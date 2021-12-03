@@ -1,0 +1,9 @@
+    MOV SI,1000
+    MOV DI,2000
+    MOV CX,0FH
+LOP:MOV AL,[SI]
+    MOV [DI],AL
+    INC SI
+    INC DI
+    LOOP LOP
+    INT 20

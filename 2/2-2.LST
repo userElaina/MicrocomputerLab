@@ -1,0 +1,73 @@
+Microsoft (R) Macro Assembler Version 5.00                  12/3/21 22:39:16
+                                                             Page     1-1
+
+
+ 0000				DATA    SEGMENT 
+ 0000  50 6C 65 61 73 65 20	NOTIC   DB "Please input the word!",0AH,0DH 
+       69 6E 70 75 74 20 74	
+       68 65 20 77 6F 72 64	
+       21 0A 0D			
+ 0018				DATA    ENDS 
+ 0000				CODE    SEGMENT 
+				        ASSUME CS:CODE,DS:DATA 
+ 0000  B8 ---- R		START:  MOV AX,DATA 
+ 0003  8E D8			        MOV DS,AX 
+ 0005  B9 0019			        MOV CX,19H 
+ 0008  8D 1E 0000 R		        LEA BX,[NOTIC] 
+ 000C  8A 17			AA0:    MOV DL,[BX] 
+ 000E  B4 02			        MOV AH,2 
+ 0010  CD 21			        INT 21H 
+ 0012  43			        INC BX 
+ 0013  E2 F7			        LOOP AA0 
+ 0015  B4 01			AA1:    MOV AH,1 
+ 0017  CD 21			        INT 21H 
+ 0019  3C 1B			        CMP AL,1BH 
+ 001B  74 12			        JZ AA3 
+ 001D  3C 61			        CMP AL,61H 
+ 001F  78 06			        JS AA2 
+ 0021  3C 7A			        CMP AL,7AH 
+ 0023  79 02			        JNS AA2 
+ 0025  2C 20			        SUB AL,20H 
+ 0027  8A D0			AA2:    MOV DL,AL 
+ 0029  B4 02			        MOV AH,2 
+ 002B  CD 21			        INT 21H 
+ 002D  E2 E6			        LOOP AA1 
+ 002F  B4 4C			AA3:    MOV AH,4CH 
+ 0031  CD 21			        INT 21H 
+ 0033				CODE    ENDS 
+				        END START 
+Microsoft (R) Macro Assembler Version 5.00                  12/3/21 22:39:16
+                                                             Symbols-1
+
+
+Segments and Groups:
+
+                N a m e         	Length	 Align	Combine Class
+
+CODE . . . . . . . . . . . . . .  	0033	PARA	NONE	
+DATA . . . . . . . . . . . . . .  	0018	PARA	NONE	
+
+Symbols:            
+
+                N a m e         	Type	 Value	 Attr
+
+AA0  . . . . . . . . . . . . . .  	L NEAR	000C	CODE
+AA1  . . . . . . . . . . . . . .  	L NEAR	0015	CODE
+AA2  . . . . . . . . . . . . . .  	L NEAR	0027	CODE
+AA3  . . . . . . . . . . . . . .  	L NEAR	002F	CODE
+
+NOTIC  . . . . . . . . . . . . .  	L BYTE	0000	DATA
+
+START  . . . . . . . . . . . . .  	L NEAR	0000	CODE
+
+@FILENAME  . . . . . . . . . . .  	TEXT  2-2		
+
+
+     31 Source  Lines
+     31 Total   Lines
+     10 Symbols
+
+  50314 + 451366 Bytes symbol space free
+
+      0 Warning Errors
+      0 Severe  Errors
